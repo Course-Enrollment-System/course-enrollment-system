@@ -1,6 +1,8 @@
-def main():
-    print("Hello from course-enrollment-system!")
+from fastapi import FastAPI
+
+app = FastAPI()
 
 
-if __name__ == "__main__":
-    main()
+@app.get("/")
+def greet():
+    return "WELCOME TO 3 ASGI FASAPI COURSE ENROLLMENT SYSTEM"
