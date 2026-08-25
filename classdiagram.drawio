@@ -1,0 +1,40 @@
+<mxfile host="Electron">
+  <diagram name="Class Diagram" id="class_diagram">
+    <mxGraphModel dx="2001" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="I6nTBluDmKgK0ZZjy32L-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="course_registration" vertex="1">
+          <mxGeometry height="100" width="170" x="190" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="I6nTBluDmKgK0ZZjy32L-2" parent="I6nTBluDmKgK0ZZjy32L-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ id : int&lt;br&gt;+ student_id : int&lt;br&gt;+ course_id : int" vertex="1">
+          <mxGeometry height="74" width="170" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="I6nTBluDmKgK0ZZjy32L-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Course" vertex="1">
+          <mxGeometry height="100" width="170" x="510" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="I6nTBluDmKgK0ZZjy32L-6" parent="I6nTBluDmKgK0ZZjy32L-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ id : int&lt;br&gt;+ code : str&lt;br&gt;+ title : str&lt;br&gt;+ department : str" vertex="1">
+          <mxGeometry height="74" width="170" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="I6nTBluDmKgK0ZZjy32L-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="Student" vertex="1">
+          <mxGeometry height="112" width="170" x="-110" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="I6nTBluDmKgK0ZZjy32L-10" parent="I6nTBluDmKgK0ZZjy32L-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ id : int&lt;br&gt;+ name : str&lt;br&gt;+ email : str&lt;br&gt;+ department : str" vertex="1">
+          <mxGeometry height="86" width="170" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="I6nTBluDmKgK0ZZjy32L-19" edge="1" parent="1" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="I6nTBluDmKgK0ZZjy32L-1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="60" y="165.5" as="sourcePoint" />
+            <mxPoint x="170" y="165.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="I6nTBluDmKgK0ZZjy32L-22" edge="1" parent="1" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="I6nTBluDmKgK0ZZjy32L-5" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="158.5" as="sourcePoint" />
+            <mxPoint x="490" y="159" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
