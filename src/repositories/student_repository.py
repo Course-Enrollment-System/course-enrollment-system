@@ -13,7 +13,9 @@ class StudentRepository:
 
         return {
             "id": str(result.inserted_id),
-            **student_data
+            "name": student.name,
+            "email": student.email,
+            "department": student.department
         }
 
     def find_by_id(self, student_id: str):
