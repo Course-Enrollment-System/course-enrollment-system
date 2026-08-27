@@ -1,47 +1,68 @@
-from bson import ObjectId
+from sqlalchemy.orm import Session
 
-from src.config.database import students_collection
 from src.models.student import Student
+from src.models.student_model import StudentModel
 
 
 class StudentRepository:
 
-    def create(self, student: Student):
-        student_data = student.model_dump()
+    def create(self, db: Session, student: Student):
+        student_model = StudentModel(
+            name=student.name,
+            email=student.email,
+            department=student.department
+        )
 
-        result = students_collection.insert_one(student_data)
+        db.add(student_model)
+        db.commit()
+        db.refresh(student_model)
 
         return {
-            "id": str(result.inserted_id),
-            "name": student.name,
-            "email": student.email,
-            "department": student.department
+            "id": student_model.id,
+            "name": student_model.name,
+            "email": student_model.email,
+            "department": student_model.department
         }
 
-    def find_by_id(self, student_id: str):
-        student = students_collection.find_one(
-            {"_id": ObjectId(student_id)}
-        )
+    def find_by_id(self, db: Session, student_id: int):
+        student = db.query(StudentModel).filter(
+            StudentModel.id == student_id
+        ).first()
 
         if student is None:
             return None
 
         return {
-            "id": str(student["_id"]),
-            "name": student["name"],
-            "email": student["email"],
-            "department": student["department"]
+            "id": student.id,
+            "name": student.name,
+            "email": student.email,
+            "department": student.department
         }
 
-    def find_all(self):
-        students = students_collection.find()
+    def find_all(self, db: Session):
+        students = db.query(StudentModel).all()
 
         return [
             {
-                "id": str(student["_id"]),
-                "name": student["name"],
-                "email": student["email"],
-                "department": student["department"]
+                "id": student.id,
+                "name": student.name,
+                "email": student.email,
+                "department": student.department
             }
             for student in students
         ]
+
+    def find_by_email(self, db: Session, email: str):
+        student = db.query(StudentModel).filter(
+            StudentModel.email == email
+        ).first()
+
+        if student is None:
+            return None
+
+        return {
+            "id": student.id,
+            "name": student.name,
+            "email": student.email,
+            "department": student.department
+        }
