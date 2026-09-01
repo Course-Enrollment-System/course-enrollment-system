@@ -10,7 +10,8 @@ class StudentRepository:
         student_model = StudentModel(
             name=student.name,
             email=student.email,
-            department=student.department
+            department=student.department,
+            password=student.password
         )
 
         db.add(student_model)
@@ -53,16 +54,7 @@ class StudentRepository:
         ]
 
     def find_by_email(self, db: Session, email: str):
-        student = db.query(StudentModel).filter(
-            StudentModel.email == email
-        ).first()
-
-        if student is None:
+        if email is None:
             return None
 
-        return {
-            "id": student.id,
-            "name": student.name,
-            "email": student.email,
-            "department": student.department
-        }
+        return db.query(StudentModel).filter(StudentModel.email == email).first()

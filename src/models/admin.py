@@ -1,10 +1,10 @@
 from pydantic import BaseModel
+
 from src.models.role import Role
 
 
-class Student(BaseModel):
+class Admin(BaseModel):
     name: str
     email: str
     password: str
-    department: str
-    role: Role = Role.STUDENT
+    role: Role = Role.ADMIN

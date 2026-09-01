@@ -1,5 +1,4 @@
 from src.config.database import Base, engine
-from src.models.student_model import StudentModel
 
 
 # Create database tables.
