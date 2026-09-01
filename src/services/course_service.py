@@ -10,11 +10,13 @@ class CourseService:
         self.course_repository = CourseRepository()
 
     def create_course(self, db: Session, course: Course):
-
+        print("hhello")
         existing_course = self.course_repository.find_by_code(
             db,
             course.code
         )
+
+        print("shshhshsh")
 
         if existing_course:
             raise ValueError("Course with this code already exists")

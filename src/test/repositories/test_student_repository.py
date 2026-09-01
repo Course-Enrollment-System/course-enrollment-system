@@ -39,6 +39,7 @@ class TestStudentRepository:
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
+            password="123456"
         )
 
         result = self.repository.create(self.db, student)
@@ -54,6 +55,7 @@ class TestStudentRepository:
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
+            password="123456"
         )
 
         created = self.repository.create(self.db, student)
@@ -77,12 +79,14 @@ class TestStudentRepository:
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
+            password="123456"
         )
 
         student2 = Student(
             name="Emeka Dike",
             email="dicks@example.com",
             department="Computer Science",
+            password="654321"
         )
 
         self.repository.create(self.db, student1)
@@ -92,20 +96,17 @@ class TestStudentRepository:
 
         assert len(result) == 2
 
-    def test_find_by_email(self):
+    def test_find_sstudent_by_email(self):
         student = Student(
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
+            password="123456"
         )
 
         self.repository.create(self.db, student)
 
-        result = self.repository.find_by_email(
-            self.db,
-            "az@example.com",
-        )
-
+        result = self.repository.find_by_email(self.db,"az@example.com")
 
         assert result["name"] == "Azeez Azeez"
         assert result["email"] == "az@example.com"
