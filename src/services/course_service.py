@@ -29,3 +29,6 @@ class CourseService:
 
         return existing_course
 
+    def find_all(self, db: Session):
+        return self.course_repository.find_all(db)
+

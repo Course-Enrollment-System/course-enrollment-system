@@ -1,3 +1,4 @@
+from unittest import result
 from unittest.mock import Mock
 
 import pytest
@@ -108,5 +109,36 @@ class TestCourseService:
             service.find_by_code(db, "CSC101")
 
         repository.create.assert_not_called()
+
+    def test_get_all_courses(self):
+        repository = Mock()
+        db = Mock()
+
+        repository.find_all.return_value = [
+            {
+            "id": 1,
+            "code": "CSC101",
+            "title": "Introduction to Computer Science",
+            "credit_unit": 3,
+            "department": "Computer Science",
+        },
+
+        {
+            "id": 2,
+            "code": "CSC201",
+            "title": "Introduction to Programming",
+            "credit_unit": 6,
+            "department": "Computer Science",
+
+        },
+        ]
+
+        service = CourseService()
+        service.course_repository = repository
+
+        result = service.find_all(db)
+        assert len(result) == 2
+
+        repository.find_all.assert_called_once_with(db)
 
 
