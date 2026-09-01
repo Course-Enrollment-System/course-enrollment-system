@@ -11,3 +11,4 @@ class CourseModel(Base):
     code = Column(String(50), unique=True, nullable=False)
     title = Column(String(255), nullable=False)
     credit_unit = Column(Integer, nullable=False)
+    department = Column(String(255), nullable=False)
