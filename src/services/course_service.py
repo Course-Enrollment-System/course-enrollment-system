@@ -21,3 +21,11 @@ class CourseService:
 
         return self.course_repository.create(db, course)
 
+    def find_by_code(self, db: Session, code: str):
+        existing_course = self.course_repository.find_by_code(db, code)
+
+        if not existing_course:
+            raise ValueError("Course with code does not exists")
+
+        return existing_course
+
