@@ -22,9 +22,7 @@ class AdminRepository:
         }
 
     def find_by_id(self, db: Session, admin_id: int):
-        admin = db.query(AdminModel).filter(
-            AdminModel.id == admin_id
-        ).first()
+        admin = (db.query(AdminModel).filter(AdminModel.id == admin_id).first())
 
         if admin is None:
             return None
@@ -48,7 +46,4 @@ class AdminRepository:
         ]
 
     def find_by_email(self, db: Session, email: str):
-        if email is None:
-            return None
-
-        return db.query(AdminModel).filter(AdminModel.email == email).first()
+        return (db.query(AdminModel).filter(AdminModel.email == email).first())

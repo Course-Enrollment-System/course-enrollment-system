@@ -4,9 +4,11 @@ from src.models.student import Student
 from src.models.admin import Admin
 from src.repositories.student_repository import StudentRepository
 from src.repositories.admin_repository import AdminRepository
+from src.services.auth_state import AuthState
 
 
 class AuthService:
+
     def __init__(self):
         self.student_repository = StudentRepository()
         self.admin_repository = AdminRepository()
@@ -33,13 +35,21 @@ class AuthService:
 
         return self.admin_repository.create(db, admin)
 
-    def login_student(self, db: Session, email: str, password: str):
-        student = self.student_repository.find_by_email(db, email)
+    def login_student(
+        self,
+        db: Session,
+        email: str,
+        password: str
+    ):
+        student = self.student_repository.find_by_email(
+            db,
+            email
+        )
 
-        if not student or student.password != password:
-            raise ValueError("Invalid password")
+        if student is None or student.password != password:
+            raise ValueError("Invalid email or password")
 
-        return {
+        user = {
             "id": student.id,
             "name": student.name,
             "email": student.email,
@@ -47,18 +57,38 @@ class AuthService:
             "role": "student"
         }
 
-    def login_admin(self, db: Session, email: str, password: str):
-        admin = self.admin_repository.find_by_email(db, email)
+        AuthState.login(user)
+
+        return user
+
+    def login_admin(
+        self,
+        db: Session,
+        email: str,
+        password: str
+    ):
+        admin = self.admin_repository.find_by_email(
+            db,
+            email
+        )
 
         if admin is None or admin.password != password:
             raise ValueError("Invalid email or password")
 
-        return {
+        user = {
             "id": admin.id,
             "name": admin.name,
             "email": admin.email,
             "role": "admin"
         }
 
+        AuthState.login(user)
+
+        return user
+
     def logout(self):
-        return {"message": "Logged out successfully"}
+        AuthState.logout()
+
+        return {
+            "message": "Logged out successfully"
+        }

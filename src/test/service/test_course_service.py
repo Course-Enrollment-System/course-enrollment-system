@@ -1,9 +1,7 @@
-from unittest import result
 from unittest.mock import Mock
 
 import pytest
 
-from models import course
 from src.models.course import Course
 from src.services.course_service import CourseService
 
@@ -34,7 +32,7 @@ class TestCourseService:
 
         with pytest.raises(
             ValueError,
-            match="Course with this code already exists",
+            match="Course with code does not exist",
         ):
             service.create_course(db, course)
 

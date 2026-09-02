@@ -28,19 +28,19 @@ class CourseRepository:
 
 #finding course by its code is way better, this is just a duplicate that's why i comment this out
 
-    # def find_by_id(self, db: Session, course_id: int):
-    #     course = db.query(CourseModel).filter(CourseModel.id == course_id).first()
-    #
-    #     if course is None:
-    #         return None
-    #
-    #     return {
-    #         "id": course.id,
-    #         "code": course.code,
-    #         "title": course.title,
-    #         "credit_unit": course.credit_unit,
-    #         "department": course.department
-    #     }
+    def find_by_id(self, db: Session, course_id: int):
+        course = db.query(CourseModel).filter(CourseModel.id == course_id).first()
+
+        if course is None:
+            return None
+
+        return {
+            "id": course.id,
+            "code": course.code,
+            "title": course.title,
+            "credit_unit": course.credit_unit,
+            "department": course.department
+        }
 
     def find_all(self, db: Session):
         courses = db.query(CourseModel).all()

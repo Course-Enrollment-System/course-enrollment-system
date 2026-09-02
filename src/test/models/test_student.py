@@ -9,7 +9,8 @@ class TestStudent:
         student = Student(
             name="Az",
             email="az@example.com",
-            department="Biochemistry"
+            department="Biochemistry",
+            password="123456"
         )
 
         assert student.name == "Az"

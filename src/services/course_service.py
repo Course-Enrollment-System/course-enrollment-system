@@ -10,27 +10,30 @@ class CourseService:
         self.course_repository = CourseRepository()
 
     def create_course(self, db: Session, course: Course):
-        print("hhello")
         existing_course = self.course_repository.find_by_code(
             db,
             course.code
         )
 
-        print("shshhshsh")
-
         if existing_course:
-            raise ValueError("Course with this code already exists")
+            raise ValueError(
+                "Course with this code already exists"
+            )
 
         return self.course_repository.create(db, course)
 
     def find_by_code(self, db: Session, code: str):
-        existing_course = self.course_repository.find_by_code(db, code)
+        course = self.course_repository.find_by_code(
+            db,
+            code
+        )
 
-        if not existing_course:
-            raise ValueError("Course with code does not exists")
+        if course is None:
+            raise ValueError(
+                "Course with this code does not exist"
+            )
 
-        return existing_course
+        return course
 
     def find_all(self, db: Session):
         return self.course_repository.find_all(db)
-
