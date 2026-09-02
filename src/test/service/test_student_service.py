@@ -26,6 +26,7 @@ class TestStudentService:
             name="Another Student",
             email="az@example.com",
             department="Biochemistry",
+            password="123456"
         )
 
         with pytest.raises(
@@ -56,6 +57,7 @@ class TestStudentService:
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
+            password="123456"
         )
 
         result = service.create_student(db, student)

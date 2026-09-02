@@ -63,5 +63,5 @@ class TestAdminRepository:
         result = repository.find_by_email(self.db, "admin2@yahoo.com")
 
         assert result is not None
-        assert result.email == "admin2@example.com"
+        assert result.email == "admin2@yahoo.com"
         assert result.password == "123456"

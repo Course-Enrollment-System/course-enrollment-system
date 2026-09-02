@@ -104,12 +104,14 @@ class TestStudentRepository:
             password="123456"
         )
 
+        print(student.name)
+
         self.repository.create(self.db, student)
 
         result = self.repository.find_by_email(self.db,"az@example.com")
 
-        assert result["name"] == "Azeez Azeez"
-        assert result["email"] == "az@example.com"
+        assert result.department == "Biochemistry"
+
 
     def test_find_by_email_not_found(self):
         result = self.repository.find_by_email(

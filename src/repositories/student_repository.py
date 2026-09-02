@@ -26,9 +26,7 @@ class StudentRepository:
         }
 
     def find_by_id(self, db: Session, student_id: int):
-        student = db.query(StudentModel).filter(
-            StudentModel.id == student_id
-        ).first()
+        student = (db.query(StudentModel).filter(StudentModel.id == student_id) .first())
 
         if student is None:
             return None
@@ -54,7 +52,4 @@ class StudentRepository:
         ]
 
     def find_by_email(self, db: Session, email: str):
-        if email is None:
-            return None
-
-        return db.query(StudentModel).filter(StudentModel.email == email).first()
+        return (db.query(StudentModel).filter(StudentModel.email == email).first())
