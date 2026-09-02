@@ -214,7 +214,7 @@ class TestAuthService:
 
         with pytest.raises(
             ValueError,
-            match="Invalid password",
+            match="Invalid email or password",
         ):
             service.login_student(
                 db,
@@ -257,7 +257,7 @@ class TestAuthService:
 
         with pytest.raises(
             ValueError,
-            match="Invalid password",
+            match="Invalid email or password",
         ):
             service.login_student(
                 db,
