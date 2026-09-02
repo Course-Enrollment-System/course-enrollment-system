@@ -139,4 +139,96 @@ class TestCourseService:
 
         repository.find_all.assert_called_once_with(db)
 
+    def test_create_course_requires_logged_in_user(self):
+        from src.services.auth_state import AuthState
+
+        AuthState.logout()
+
+        repository = Mock()
+        db = Mock()
+
+        service = CourseService()
+        service.course_repository = repository
+
+        course = Course(
+            code="CSC101",
+            title="Introduction to Computer Science",
+            credit_unit=3,
+            department="Computer Science",
+        )
+
+        with pytest.raises(PermissionError, match="not logged in"):
+            service.create_course(db, course)
+
+    def test_student_cannot_create_course(self):
+        from src.services.auth_state import AuthState
+
+        AuthState.login({
+            "id": 1,
+            "name": "Azeez Azeez",
+            "email": "az@example.com",
+            "role": "student",
+        })
+
+        repository = Mock()
+        db = Mock()
+
+        service = CourseService()
+        service.course_repository = repository
+
+        course = Course(
+            code="CSC101",
+            title="Introduction to Computer Science",
+            credit_unit=3,
+            department="Computer Science",
+        )
+
+        with pytest.raises(
+                PermissionError,
+                match="Only admins can create courses"
+        ):
+            service.create_course(db, course)
+
+        AuthState.logout()
+
+    def test_admin_can_create_course(self):
+        from src.services.auth_state import AuthState
+
+        AuthState.login({
+            "id": 1,
+            "name": "Admin",
+            "email": "admin@example.com",
+            "role": "admin",
+        })
+
+        repository = Mock()
+        db = Mock()
+
+        repository.find_by_code.return_value = None
+
+        repository.create.return_value = {
+            "id": 1,
+            "code": "CSC101",
+            "title": "Introduction to Computer Science",
+            "credit_unit": 3,
+            "department": "Computer Science",
+        }
+
+        service = CourseService()
+        service.course_repository = repository
+
+        course = Course(
+            code="CSC101",
+            title="Introduction to Computer Science",
+            credit_unit=3,
+            department="Computer Science",
+        )
+
+        result = service.create_course(db, course)
+
+        assert result["id"] == 1
+        assert result["code"] == "CSC101"
+
+        AuthState.logout()
+
 

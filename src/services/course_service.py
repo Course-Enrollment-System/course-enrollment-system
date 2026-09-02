@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 
 from src.models.course import Course
 from src.repositories.course_repository import CourseRepository
+from src.services.auth_state import AuthState
 
 
 class CourseService:
@@ -10,6 +11,18 @@ class CourseService:
         self.course_repository = CourseRepository()
 
     def create_course(self, db: Session, course: Course):
+
+        current_user = AuthState.get_current_user()
+
+        # this will check if the admin is logged in
+        if current_user is None:
+            raise PermissionError("You're not logged in")
+
+        # this is to check if  is logged in, but isn't an admin
+        if current_user["role"] != "admin":
+            raise PermissionError("Only admins can create courses")
+
+        # Check if course already exists
         existing_course = self.course_repository.find_by_code(
             db,
             course.code
@@ -20,13 +33,14 @@ class CourseService:
                 "Course with this code already exists"
             )
 
-        return self.course_repository.create(db, course)
+        return self.course_repository.create(
+            db,
+            course
+        )
 
     def find_by_code(self, db: Session, code: str):
-        course = self.course_repository.find_by_code(
-            db,
-            code
-        )
+
+        course = self.course_repository.find_by_code(db,code)
 
         if course is None:
             raise ValueError(
