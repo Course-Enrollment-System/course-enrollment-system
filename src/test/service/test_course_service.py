@@ -32,7 +32,7 @@ class TestCourseService:
 
         with pytest.raises(
             ValueError,
-            match="Course with code does not exist",
+            match="Course with this code already exists",
         ):
             service.create_course(db, course)
 
@@ -102,7 +102,7 @@ class TestCourseService:
         service.course_repository = repository
 
         with pytest.raises(
-            ValueError,match= "Course with code does not exists"
+            ValueError,match= "Course with this code does not exist"
         ):
             service.find_by_code(db, "CSC101")
 
