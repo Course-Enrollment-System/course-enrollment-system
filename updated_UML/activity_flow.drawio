@@ -1,0 +1,120 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Student Enrollment Activity Flow">
+    <mxGraphModel dx="1400" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Start -->
+        <mxCell id="start" value="" style="ellipse;html=1;aspect=fixed;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="650" y="30" width="30" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Login -->
+        <mxCell id="login" value="Student logs in" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="90" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Login decision -->
+        <mxCell id="logged_in" value="Logged in?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="585" y="170" width="160" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="login_failed" value="Display &quot;You're not logged in&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="185" width="210" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- View courses -->
+        <mxCell id="view_courses" value="View available courses" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="290" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="select_course" value="Select course" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="370" width="150" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Course exists -->
+        <mxCell id="course_exists" value="Course exists?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="450" width="170" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="course_not_found" value="Display &quot;Course does not exist&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="465" width="220" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Already enrolled -->
+        <mxCell id="already_enrolled" value="Already enrolled?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="570" y="570" width="190" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="duplicate" value="Display &quot;Already enrolled&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="585" width="200" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Create enrollment -->
+        <mxCell id="create_enrollment" value="Create Enrollment" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="585" y="700" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="success" value="Display &quot;Enrollment successful&quot;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="780" width="210" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- End -->
+        <mxCell id="end" value="" style="ellipse;html=1;aspect=fixed;fillColor=#ffffff;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="650" y="870" width="40" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" edge="1" parent="1" source="start" target="login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" edge="1" parent="1" source="login" target="logged_in" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" edge="1" parent="1" source="logged_in" target="view_courses" value="[Yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" edge="1" parent="1" source="logged_in" target="login_failed" value="[No]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" edge="1" parent="1" source="view_courses" target="select_course" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" edge="1" parent="1" source="select_course" target="course_exists" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e7" edge="1" parent="1" source="course_exists" target="already_enrolled" value="[Yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e8" edge="1" parent="1" source="course_exists" target="course_not_found" value="[No]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e9" edge="1" parent="1" source="already_enrolled" target="duplicate" value="[Yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e10" edge="1" parent="1" source="already_enrolled" target="create_enrollment" value="[No]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e11" edge="1" parent="1" source="create_enrollment" target="success" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e12" edge="1" parent="1" source="success" target="end" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,60 @@
+<mxfile host="Electron">
+  <diagram name="Course Enrollment System - Class Diagram" id="0">
+    <mxGraphModel dx="1040" dy="837" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="student" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;whiteSpace=wrap;html=1;" value="Student" vertex="1">
+          <mxGeometry height="170" width="220" x="60" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="student_attributes" parent="student" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;whiteSpace=wrap;html=1;" value="+ id : int&lt;br&gt;+ name : str&lt;br&gt;+ email : str&lt;br&gt;+ department : str&lt;br&gt;+ password : str" vertex="1">
+          <mxGeometry height="144" width="220" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;whiteSpace=wrap;html=1;" value="Admin" vertex="1">
+          <mxGeometry height="170" width="220" x="60" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="admin_attributes" parent="admin" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;whiteSpace=wrap;html=1;" value="+ id : int&lt;br&gt;+ name : str&lt;br&gt;+ email : str&lt;br&gt;+ password : str" vertex="1">
+          <mxGeometry height="144" width="220" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="course" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;whiteSpace=wrap;html=1;" value="Course" vertex="1">
+          <mxGeometry height="190" width="250" x="560" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="course_attributes" parent="course" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;whiteSpace=wrap;html=1;" value="+ id : int&lt;br&gt;+ code : str&lt;br&gt;+ title : str&lt;br&gt;+ credit_unit : int&lt;br&gt;+ department : str" vertex="1">
+          <mxGeometry height="164" width="250" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="enrollment" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;whiteSpace=wrap;html=1;" value="Enrollment" vertex="1">
+          <mxGeometry height="170" width="250" x="560" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="enrollment_attributes" parent="enrollment" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;whiteSpace=wrap;html=1;" value="+ id : int&lt;br&gt;+ student_id : int&lt;br&gt;+ course_code : str&lt;div&gt;+ semester : str&lt;/div&gt;" vertex="1">
+          <mxGeometry height="144" width="250" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="authstate" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;whiteSpace=wrap;html=1;" value="AuthState" vertex="1">
+          <mxGeometry height="220" width="270" x="960" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="authstate_attributes" parent="authstate" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;whiteSpace=wrap;html=1;" value="+ current_user : dict | None&lt;br&gt;&lt;br&gt;+ login(user)&lt;br&gt;+ logout()&lt;br&gt;+ get_current_user()" vertex="1">
+          <mxGeometry height="194" width="270" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="course_enrollment" edge="1" parent="1" source="course" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;" target="enrollment" value="1..*">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UZSpydMv49QH4bOnxddW-6" edge="1" parent="1" source="admin_attributes" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="enrollment" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="300" y="450" as="sourcePoint" />
+            <mxPoint x="410" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UZSpydMv49QH4bOnxddW-7" connectable="0" parent="UZSpydMv49QH4bOnxddW-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="manages" vertex="1">
+          <mxGeometry relative="1" x="-0.0558" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="UZSpydMv49QH4bOnxddW-9" edge="1" parent="1" source="student" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="course" value="1..*">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="140" as="sourcePoint" />
+            <mxPoint x="370" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
