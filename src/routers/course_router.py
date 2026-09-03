@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.functions import current_user
 
 from src.config.database import get_db
 from src.models.course import Course
@@ -69,4 +70,29 @@ def get_course(
         raise HTTPException(
             status_code=404,
             detail=str(e)
+        )
+
+@router.delete("/{code}")
+def delete_course(code: str, db: Session = Depends(get_db)):
+
+    current_user = AuthState.get_current_user()
+
+    if current_user is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Please login first"
+        )
+
+    if current_user["role"] != "admin":
+        raise HTTPException(
+            status_code=403,
+            detail="Only admin can delete courses"
+        )
+    try:
+        return course_service.delete_by_curse_code(db, code)
+
+    except ValueError:
+        raise HTTPException(
+            status_code=400,
+            detail="Course does not exist"
         )

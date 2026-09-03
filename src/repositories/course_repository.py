@@ -70,3 +70,17 @@ class CourseRepository:
             "credit_unit": course.credit_unit,
             "department": course.department
         }
+
+    def delete_by_code(self, db: Session, code: str):
+        course = db.query(CourseModel).filter(CourseModel.code == code).first()
+
+        if course is None:
+            return None
+
+        db.delete(course)
+        db.commit()
+
+        return {
+            "code": course.code,
+            "title": course.title,
+        }
