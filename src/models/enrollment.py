@@ -2,5 +2,5 @@ from pydantic import BaseModel
 
 class Enrollment(BaseModel):
     student_id: int
-    session: str
+    course_code: str
     semester: str

@@ -9,4 +9,4 @@ class EnrollmentModel(Base):
     id = Column(Integer, primary_key=True, index=True)
     student_id = Column(Integer, ForeignKey("students.id"), nullable=False)
     semester = Column(String(50), nullable=False)
-    session = Column(String(20), nullable=False)
+    course_code = Column(String(100),nullable=False)
