@@ -1,6 +1,6 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
-
+from sqlalchemy import Column, ForeignKey, Integer, String, Enum, UniqueConstraint
 from src.config.database import Base
+from src.models.semester import Semester
 
 
 class EnrollmentModel(Base):
@@ -8,5 +8,16 @@ class EnrollmentModel(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     student_id = Column(Integer, ForeignKey("students.id"), nullable=False)
-    semester = Column(String(50), nullable=False)
-    course_code = Column(String(100),nullable=False)
+    course_code = Column(String(100), ForeignKey("courses.code"), nullable=False)
+    semester = Column(Enum(Semester, native_enum=False), nullable=False)
+    session = Column(String(50), nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "student_id",
+            "course_code",
+            "semester",
+            "session",
+            name="uq_student_course_semester_session"
+        ),
+    )

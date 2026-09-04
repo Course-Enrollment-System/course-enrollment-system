@@ -1,6 +1,9 @@
+from typing import List
 from pydantic import BaseModel
+from src.models.semester import Semester
 
-class Enrollment(BaseModel):
+class CourseEnrollmentRequest(BaseModel):
     student_id: int
-    course_code: str
-    semester: str
+    semester: Semester
+    session: str
+    course_codes: List[str]
