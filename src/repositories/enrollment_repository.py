@@ -11,6 +11,7 @@ class EnrollmentRepository:
                 enrollment_model = EnrollmentModel(
                     student_id=enrollment.student_id,
                     course_code=enrollment.course_code,
+                    session=enrollment.session,
                     semester=enrollment.semester
                 )
 
@@ -22,6 +23,7 @@ class EnrollmentRepository:
                     "id": enrollment_model.id,
                     "student_id": enrollment_model.student_id,
                     "course_code": enrollment_model.course_code,
+                    "session": enrollment_model.session,
                     "semester": enrollment_model.semester
                 }
 
@@ -39,6 +41,7 @@ class EnrollmentRepository:
                     "id": enrollment.id,
                     "student_id": enrollment.student_id,
                     "course_code": enrollment.course_code,
+                    "session": enrollment.session,
                     "semester": enrollment.semester
                 }
 
@@ -50,6 +53,7 @@ class EnrollmentRepository:
                         "id": enrollment.id,
                         "student_id": enrollment.student_id,
                         "course_code": enrollment.course_code,
+                        "session": enrollment.session,
                         "semester": enrollment.semester
                     }
                     for enrollment in enrollments
