@@ -37,6 +37,7 @@ class TestEnrollmentRepository:
         enrollment = Enrollment(
             student_id=1,
             course_code="CSC101",
+            session="2025/2026",
             semester="First",
         )
 
@@ -47,6 +48,7 @@ class TestEnrollmentRepository:
 
         assert result["student_id"] == 1
         assert result["course_code"] == "CSC101"
+        assert result["session"]=="2025/2026"
         assert result["semester"] == "First"
         assert result["id"] is not None
 
@@ -54,6 +56,7 @@ class TestEnrollmentRepository:
         enrollment = Enrollment(
             student_id=1,
             course_code="CSC101",
+            session="2025/2026",
             semester="First",
         )
 
@@ -69,6 +72,7 @@ class TestEnrollmentRepository:
 
         assert result["student_id"] == 1
         assert result["course_code"] == "CSC101"
+        assert result["session"]=="2025/2026"
         assert result["semester"] == "First"
 
     def test_find_enrollment_by_id_not_found(self):
@@ -83,12 +87,14 @@ class TestEnrollmentRepository:
         enrollment1 = Enrollment(
             student_id=1,
             course_code="CSC101",
+            session="2025/2026",
             semester="First",
         )
 
         enrollment2 = Enrollment(
             student_id=1,
             course_code="MTH101",
+            session="2025/2026",
             semester="First",
         )
 
@@ -115,6 +121,8 @@ class TestEnrollmentRepository:
         enrollment = Enrollment(
             student_id=1,
             course_code="CSC101",
+            session="2025/2026",
+
             semester="First",
         )
 
@@ -144,12 +152,16 @@ class TestEnrollmentRepository:
         enrollment1 = Enrollment(
             student_id=1,
             course_code="CSC101",
+            session="2025/2026",
+
             semester="First",
         )
 
         enrollment2 = Enrollment(
             student_id=1,
             course_code="MTH101",
+            session="2025/2026",
+
             semester="First",
         )
 
@@ -169,6 +181,8 @@ class TestEnrollmentRepository:
         enrollment = Enrollment(
             student_id=2,
             course_code="BUS111",
+            session="2025/2026",
+
             semester="Second",
         )
 
@@ -188,12 +202,16 @@ class TestEnrollmentRepository:
         enrollment1 = Enrollment(
             student_id=1,
             course_code="CSC101",
+            session="2025/2026",
+
             semester="First",
         )
 
         enrollment2 = Enrollment(
             student_id=1,
             course_code="MTH101",
+            session="2025/2026",
+
             semester="First",
         )
 
