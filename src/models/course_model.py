@@ -7,7 +7,7 @@ from src.config.database import Base
 class CourseModel(Base):
     __tablename__ = "courses"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     code = Column(String(50), unique=True, nullable=False)
     title = Column(String(255), nullable=False)
     credit_unit = Column(Integer, nullable=False)
