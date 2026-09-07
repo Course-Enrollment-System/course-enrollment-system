@@ -41,6 +41,7 @@ class TestEnrollmentRepository:
             course_code="CSC101",
             session="2025/2026",
             semester=Semester.FIRST
+            semester="First",
         )
 
         result = self.repository.create(self.db, enrollment)
@@ -49,6 +50,8 @@ class TestEnrollmentRepository:
         assert result["course_code"] == "CSC101"
         assert result["session"] == "2025/2026"
         assert result["semester"] == "FIRST"
+        assert result["session"]=="2025/2026"
+        assert result["semester"] == "First"
         assert result["id"] is not None
 
     def test_find_enrollment_by_id(self):
@@ -57,6 +60,8 @@ class TestEnrollmentRepository:
             course_code="CSC101",
             semester=Semester.FIRST,
             session="2025/2026"
+            session="2025/2026",
+            semester="First",
         )
 
         created = self.repository.create(self.db, enrollment)
@@ -66,6 +71,8 @@ class TestEnrollmentRepository:
         assert result["course_code"] == "CSC101"
         assert result["semester"] == "FIRST"
         assert result["session"] == "2025/2026"
+        assert result["session"]=="2025/2026"
+        assert result["semester"] == "First"
 
     def test_find_enrollment_by_id_not_found(self):
         result = self.repository.find_by_id(self.db, 999)
@@ -77,12 +84,16 @@ class TestEnrollmentRepository:
             course_code="CSC101",
             semester=Semester.FIRST,
             session="2025/2026"
+            session="2025/2026",
+            semester="First",
         )
         enrollment2 = CourseEnrollment(
             student_id=1,
             course_code="MTH101",
             semester=Semester.FIRST,
             session="2025/2026"
+            session="2025/2026",
+            semester="First",
         )
 
         self.repository.create(self.db, enrollment1)
@@ -101,6 +112,9 @@ class TestEnrollmentRepository:
             course_code="CSC101",
             semester=Semester.FIRST,
             session="2025/2026"
+            session="2025/2026",
+
+            semester="First",
         )
 
         self.repository.create(self.db, enrollment)
@@ -122,12 +136,18 @@ class TestEnrollmentRepository:
             course_code="CSC101",
             semester=Semester.FIRST,
             session="2025/2026"
+            session="2025/2026",
+
+            semester="First",
         )
         enrollment2 = CourseEnrollment(
             student_id=1,
             course_code="MTH101",
             semester=Semester.FIRST,
             session="2025/2026"
+            session="2025/2026",
+
+            semester="First",
         )
 
         res1 = self.repository.create(self.db, enrollment1)
@@ -141,6 +161,9 @@ class TestEnrollmentRepository:
             course_code="BUS111",
             semester=Semester.SECOND,
             session="2025/2026"
+            session="2025/2026",
+
+            semester="Second",
         )
 
         created = self.repository.create(self.db, enrollment)
@@ -154,12 +177,18 @@ class TestEnrollmentRepository:
             course_code="CSC101",
             semester=Semester.FIRST,
             session="2025/2026"
+            session="2025/2026",
+
+            semester="First",
         )
         enrollment2 = CourseEnrollment(
             student_id=1,
             course_code="MTH101",
             semester=Semester.FIRST,
             session="2025/2026"
+            session="2025/2026",
+
+            semester="First",
         )
 
         self.repository.create(self.db, enrollment1)
