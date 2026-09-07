@@ -1,41 +1,30 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from src.config.database import Base
-from src.models.student import Student
-from src.repositories.student_repository import StudentRepository
+from src.models.student_model import StudentModel
+from src.repositories.student_repository import StudentRepository# Ensure your model is imported
 
-
-# as you can see i used SQLite for repository tests.
-DATABASE_URL = "sqlite:///./test.db"
-
-engine = create_engine(
-    DATABASE_URL,
-    connect_args={"check_same_thread": False},
-)
-
-TestingSessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=engine,
-)
+# 1. Create a temporary in-memory database JUST for testing
+test_engine = create_engine("sqlite:///:memory:")
+TestSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
 
 class TestStudentRepository:
-
     def setup_method(self):
-        Base.metadata.create_all(bind=engine)
+        # 2. Build fresh tables in RAM (completely ignores your local .db file)
+        Base.metadata.create_all(bind=test_engine)
 
-        self.db = TestingSessionLocal()
+        # 3. Bind your test session to the memory database
+        self.db = TestSessionLocal()
         self.repository = StudentRepository()
 
     def teardown_method(self):
+        # 4. Clean up the RAM database after each test
         self.db.close()
-
-        Base.metadata.drop_all(bind=engine)
+        Base.metadata.drop_all(bind=test_engine)
 
     def test_create_student(self):
-        student = Student(
+        student = StudentModel(
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
@@ -51,7 +40,7 @@ class TestStudentRepository:
         assert result["id"] is not None
 
     def test_find_student_by_id(self):
-        student = Student(
+        student = StudentModel(
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
@@ -75,14 +64,14 @@ class TestStudentRepository:
         assert result is None
 
     def test_find_all_students(self):
-        student1 = Student(
+        student1 = StudentModel(
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
             password="123456"
         )
 
-        student2 = Student(
+        student2 = StudentModel(
             name="Emeka Dike",
             email="dicks@example.com",
             department="Computer Science",
@@ -97,7 +86,7 @@ class TestStudentRepository:
         assert len(result) == 2
 
     def test_find_sstudent_by_email(self):
-        student = Student(
+        student = StudentModel(
             name="Azeez Azeez",
             email="az@example.com",
             department="Biochemistry",
